@@ -25,7 +25,7 @@ def add_recipe(request):
         
         if form.is_valid():
             recipe = form.save(commit=False)
-            recipe.author = 1
+            recipe.author = request.user
             recipe.save()
 
             # Get the ID of the newly added recipe
