@@ -1,0 +1,13 @@
+asgiref
+Brotli
+click
+dj-database-url
+Django
+gunicorn
+h11
+packaging
+psycopg2-binary
+sqlparse
+typing_extensions
+uvicorn
+whitenoise
