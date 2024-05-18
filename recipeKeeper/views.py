@@ -18,14 +18,14 @@ def get_recipe_by_id(request, recipe_id):
     template = loader.get_template("recipeKeeper/recipe_template.html")
     return HttpResponse(template.render(context, request))
 
-@login_required
+# @login_required
 def add_recipe(request):
     if request.method == 'POST':
         form = RecipeForm(request.POST)
         
         if form.is_valid():
             recipe = form.save(commit=False)
-            recipe.author = request.user
+            recipe.author = 1
             recipe.save()
 
             # Get the ID of the newly added recipe
