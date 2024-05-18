@@ -23,4 +23,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("<int:recipe_id>/", views.get_recipe_by_id, name="get_recipe_by_id"),
     path("add_recipe", views.add_recipe, name="add_recipe"),
+    path('recipes/', views.recipe_list, name='recipe_list'),
 ]

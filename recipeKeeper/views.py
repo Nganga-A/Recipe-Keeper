@@ -37,4 +37,7 @@ def add_recipe(request):
     return HttpResponse(template.render(context, request))
 
 def recipe_list(request):
-    pass
+    recipes = Recipe.objects.all()
+    context = {'recipes': recipes}
+    template = loader.get_template("recipeKeeper/recipe_list.html")
+    return HttpResponse(template.render(context, request))
