@@ -1,0 +1,56 @@
+{% load custom_filters %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Recipe Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            margin-bottom: 10px;
+            color: #555;
+        }
+        .error-message {
+            color: #ff0000;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% if recipe %}
+            <h1>{{ recipe.title }}</h1>
+            <p><strong>Description</strong><br>{{ recipe.description }}</p>
+            <p><strong>Ingredients</strong><br> {{ recipe.ingredients }}</p>
+            <p>
+                <strong>Cooking Instructions</strong>
+                <ol>
+                    {% for step in recipe.cooking_instructions|split_instructions %}
+                        <li>{{ step }}</li>
+                    {% endfor %}
+                </ol>
+            </p>
+            <p>Difficulty Level: {{ recipe.difficulty_level }}</p>
+        {% else %}
+            <p class="error-message">The recipe does not exist.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
