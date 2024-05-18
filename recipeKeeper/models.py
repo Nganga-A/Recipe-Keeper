@@ -13,7 +13,7 @@ class Recipe(models.Model):
     ]
     difficulty_level = models.CharField(max_length=6, choices=difficulty)
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
 
     def __str__(self):
         return self.title
