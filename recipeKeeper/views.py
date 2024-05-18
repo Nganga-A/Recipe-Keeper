@@ -9,7 +9,8 @@ from django.contrib.auth.decorators import login_required
 
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the Recipes Homepage.")
+    template = loader.get_template("recipeKeeper/landing_page.html")
+    return HttpResponse(template.render({}, request))
 
 def get_recipe_by_id(request, recipe_id):
     recipe = get_object_or_404(Recipe, pk=recipe_id)
