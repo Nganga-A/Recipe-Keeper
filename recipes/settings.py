@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-lgx22d=#12n^uij1!!jef0!a7rsxnjjp43cc!nu$zr5l&52j%(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [recipe-keeper-pvsq.onrender.com]
 
 
 # Application definition
