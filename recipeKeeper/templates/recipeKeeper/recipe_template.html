@@ -1,10 +1,12 @@
 {% load custom_filters %}
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Recipe Details</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,6 +16,7 @@
         }
         .container {
             max-width: 800px;
+            margin: 10px auto;
             padding: 20px;
             background-color: #f7f7f7;
             border-radius: 5px;
@@ -40,6 +43,21 @@
             text-decoration: none;
             border-radius: 5px;
             transition: background-color 0.3s;
+            margin-right: 10px;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        .edit-button {
+            background-color: #4CAF50; /* Green */
+        }
+
+        .delete-button {
+            background-color: #f44336; /* Red */
+        }
+
+        .button-icon {
+            margin-right: 5px;
         }
     </style>
 </head>
@@ -47,17 +65,25 @@
     <div class="container">
         {% if recipe %}
             <h1>{{ recipe.title }}</h1>
-            <p><strong>Description</strong><br>{{ recipe.description }}</p>
-            <p><strong>Ingredients</strong><br> {{ recipe.ingredients }}</p>
+            <p>Description: {{ recipe.description }}</p>
+            <p>Ingredients: {{ recipe.ingredients }}</p>
             <p>
-                <strong>Cooking Instructions</strong>
+                Cooking Instructions:
                 <ol>
                     {% for step in recipe.cooking_instructions|split_instructions %}
                         <li>{{ step }}</li>
                     {% endfor %}
                 </ol>
             </p>
-            <p><strong>Difficulty Level:</strong> {{ recipe.difficulty_level }}</p>
+            <p>Difficulty Level: {{ recipe.difficulty_level }}</p>
+            <div class="button-container">
+                <a href="{% url 'edit_recipe' recipe.id %}" class="button edit-button">
+                    <i class="fas fa-edit button-icon"></i>Edit Recipe
+                </a>
+                <a href="{% url 'delete_recipe' recipe.id %}" class="button delete-button">
+                    <i class="fas fa-button-icon">Delete Recipe
+                </a>
+            </div>
         {% else %}
             <p class="error-message">The recipe does not exist.</p>
         {% endif %}

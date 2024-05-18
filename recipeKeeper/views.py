@@ -41,3 +41,16 @@ def recipe_list(request):
     context = {'recipes': recipes}
     template = loader.get_template("recipeKeeper/recipe_list.html")
     return HttpResponse(template.render(context, request))
+
+def delete_recipe(request, recipe_id):
+    recipe = get_object_or_404(Recipe, pk=recipe_id)
+    if request.method == 'POST':
+        recipe.delete()
+        return redirect('recipe_list')
+    
+    template = loader.get_template("recipeKeeper/delete_confirm.html")
+    context = {'recipe': recipe}
+    return HttpResponse(template.render(context, request))
+
+def edit_recipe(request):
+    pass
